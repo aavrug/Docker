@@ -2,10 +2,11 @@ FROM ubuntu:14.04
 
 MAINTAINER Gaurav Kumar <aavrug@gmail.com>
 
-RUN apt-get update
+#Set the Environment
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install apache, PHP, and supplimentary programs. curl and lynx-cur are for debugging the container.
-RUN DEBIAN_FRONTEND=noninteractive sudo apt-get -y install apache2 libapache2-mod-php5 php5-mysql php5-gd php-pear php-apc php5-curl curl lynx-cur php5-intl php5-mcrypt 
+RUN apt-get update && apt-get -y install apache2 libapache2-mod-php5 php5-mysql php5-gd php-pear php-apc php5-curl curl lynx-cur php5-intl php5-mcrypt 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN sudo mv composer.phar /usr/local/bin/composer
 
